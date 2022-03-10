@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Product Catalogue">
+        <div >
+            <div class="colm">
+            <table border="2">
+                <tbody>
+                    <tr>
+                        <th>Active</th>
+                    </tr>
+                    <template if:true={activeProducts} for:each={activeProducts} for:item="item" for:index="index">
+                        <tr key={item.Id}>
+                            <td>Name: {item.Brand__c} {item.Name} {item.Model__c}<br/>Product type: {item.Type__c}<br/>Price: {item.Price__c}</td>
+                            <td><lightning-button variant="brand" data-id={index} onclick={clickDelete} label="Remove"></lightning-button></td>
+                        </tr>
+                    </template>
+                    <tr><td>Total Active Products: {activeProducts.length}<br/> Total Price:{activeProdPrice}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="colm">
+            <table border ="2">
+                <tbody>
+                    <tr>
+                        <th>Deleted</th>
+                    </tr>
+                    <template if:true={deletedProducts} for:each={deletedProducts} for:item="item" for:index="index">
+                        <tr key={item.Id}>
+                            <td>Name: {item.Brand__c} {item.Name} {item.Model__c}<br/>Product type: {item.Type__c}<br/>Price: {item.Price__c}</td>
+                            <td><lightning-button variant="brand" data-id={index} onclick={clickRestore} label="Restore"></lightning-button></td>
+                        </tr>
+                    </template>
+                    
+                    <tr><td>Total Deleted Products: {deletedProducts.length}<br/> Total Price:{deletedProdPrice}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+        
+    </lightning-card>
+    
+</template>
